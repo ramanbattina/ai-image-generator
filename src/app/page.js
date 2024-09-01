@@ -12,13 +12,13 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     try {
-      const prompt = `Tattoo design of ${design} in ${style} style, highly detailed, no body parts, isolated on white background, no human, no skin, no person`;
+      const prompt = `Tattoo design of ${design} in ${style} style, highly detailed, no body parts, isolated on white background, no human, no skin, no person, black and white`;
       const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           prompt,
-          negative_prompt: "cartoon, anime, illustration, digital art, canvas, paper, painting, body, skin, human, person, face, hand, arm, leg, foot, finger, toe",
+          negative_prompt: "cartoon, anime, illustration, digital art, canvas, paper, painting, body, skin, human, person, face, hand, arm, leg, foot, finger, toe, color",
           image: { size: "600x900" }, // Pinterest optimized size
         }),
       });
@@ -54,7 +54,7 @@ export default function Home() {
           value={design}
           onChange={(e) => setDesign(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded mb-2"
-          placeholder="Describe your tattoo design (e.g., rose with butterfly)"
+          placeholder="Describe your tattoo design (e.g., black rose)"
         />
         
         <select
