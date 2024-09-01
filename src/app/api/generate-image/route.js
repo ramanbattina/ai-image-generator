@@ -4,6 +4,7 @@ import axios from 'axios';
 export async function POST(request) {
   try {
     const body = await request.json();
+    console.log('Sending request to Freepik API:', body);
 
     const response = await axios.post(
       'https://api.freepik.com/v1/ai/text-to-image',
@@ -16,12 +17,14 @@ export async function POST(request) {
       }
     );
 
+    console.log('Received response from Freepik API:', response.data);
+
     return NextResponse.json(response.data);
   } catch (error) {
     console.error('Error generating image:', error.response ? error.response.data : error.message);
     return NextResponse.json(
       { error: 'Failed to generate image', details: error.response ? error.response.data : error.message },
-      { status: 500 }
+      { status: error.response ? error.response.status : 500 }
     );
   }
 }

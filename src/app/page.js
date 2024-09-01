@@ -14,13 +14,14 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     try {
-      const fullPrompt = `Tattoo design of ${prompt} on ${placement}`;
+      const truncatedPrompt = prompt.length > 100 ? prompt.slice(0, 100) + '...' : prompt;
+      const fullPrompt = `Photorealistic tattoo of ${truncatedPrompt} on human ${placement}, closeup view`;
       const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: fullPrompt,
-          negative_prompt: "canvas, paper, drawing, sketch",
+          negative_prompt: "canvas, paper, drawing, sketch, cartoon, anime, illustration, digital art",
           styling: {
             style: style,
             framing: "closeup"
@@ -28,18 +29,21 @@ export default function Home() {
           image: {
             size: "square"
           },
-          num_inference_steps: 30,
-          guidance_scale: 7.5
+          num_inference_steps: 50,
+          guidance_scale: 8.5
         }),
       });
-      if (!response.ok) {
-        throw new Error('Failed to generate image');
-      }
       const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to generate image');
+      }
+      if (!data.data || !data.data[0] || !data.data[0].base64) {
+        throw new Error('Invalid response format from API');
+      }
       setGeneratedImage(`data:image/png;base64,${data.data[0].base64}`);
     } catch (error) {
       console.error('Failed to generate image:', error);
-      setError('Failed to generate image. Please try again.');
+      setError(`Failed to generate image: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
