@@ -3,12 +3,18 @@ import axios from 'axios';
 
 export async function POST(request) {
   try {
-    const { prompt } = await request.json();
+    const { prompt, negative_prompt } = await request.json();
     console.log('Received prompt:', prompt);
 
     const response = await axios.post(
       'https://api.freepik.com/v1/ai/text-to-image',
-      { prompt, image: { size: "square" } },
+      {
+        prompt,
+        negative_prompt,
+        image: { size: "square" },
+        num_inference_steps: 50,
+        guidance_scale: 7.5,
+      },
       {
         headers: {
           'Content-Type': 'application/json',
