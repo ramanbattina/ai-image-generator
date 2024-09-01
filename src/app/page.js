@@ -14,23 +14,13 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     try {
-      const truncatedPrompt = prompt.length > 100 ? prompt.slice(0, 100) + '...' : prompt;
-      const fullPrompt = `Photorealistic tattoo of ${truncatedPrompt} on human ${placement}, closeup view`;
+      const fullPrompt = `Tattoo of ${prompt} on ${placement}`;
       const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           prompt: fullPrompt,
-          negative_prompt: "canvas, paper, drawing, sketch, cartoon, anime, illustration, digital art",
-          styling: {
-            style: style,
-            framing: "closeup"
-          },
-          image: {
-            size: "square"
-          },
-          num_inference_steps: 50,
-          guidance_scale: 8.5
+          image: { size: "square" }
         }),
       });
       const data = await response.json();
