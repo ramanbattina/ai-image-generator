@@ -12,13 +12,13 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     try {
-      const prompt = `Tattoo design of ${design} in ${style} style, highly detailed, no body parts, isolated on white background`;
+      const prompt = `Tattoo design of ${design} in ${style} style, highly detailed, no body parts, isolated on white background, no human, no skin, no person`;
       const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           prompt,
-          negative_prompt: "cartoon, anime, illustration, digital art, canvas, paper, painting, body, skin, human",
+          negative_prompt: "cartoon, anime, illustration, digital art, canvas, paper, painting, body, skin, human, person, face, hand, arm, leg, foot, finger, toe",
           image: { size: "600x900" }, // Pinterest optimized size
         }),
       });

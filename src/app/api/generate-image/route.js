@@ -13,7 +13,7 @@ export async function POST(request) {
         negative_prompt,
         image,
         num_inference_steps: 50,
-        guidance_scale: 7.5,
+        guidance_scale: 10, // Increased guidance scale for stricter adherence to prompt
       },
       {
         headers: {
