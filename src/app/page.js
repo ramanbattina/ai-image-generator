@@ -14,11 +14,23 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     try {
-      const fullPrompt = `Tattoo design of ${prompt} in ${style} style for ${placement} placement`;
+      const fullPrompt = `Tattoo design of ${prompt} on ${placement}`;
       const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: fullPrompt }),
+        body: JSON.stringify({
+          prompt: fullPrompt,
+          negative_prompt: "canvas, paper, drawing, sketch",
+          styling: {
+            style: style,
+            framing: "closeup"
+          },
+          image: {
+            size: "square"
+          },
+          num_inference_steps: 30,
+          guidance_scale: 7.5
+        }),
       });
       if (!response.ok) {
         throw new Error('Failed to generate image');
