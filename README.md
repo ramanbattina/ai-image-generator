@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tattoo Design Generator
 
-## Getting Started
+This application uses AI to generate tattoo designs based on user input. Users can specify the tattoo description, style, and placement.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Generate tattoo designs from text descriptions
+- Choose from various tattoo styles (realistic, minimalist, traditional, watercolor, geometric)
+- Specify tattoo placement (arm, leg, back, chest, wrist)
+- Powered by Freepik's AI image generation API
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to Use
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Enter a description of the tattoo you want
+2. Select the desired style from the dropdown menu
+3. Choose the placement for the tattoo
+4. Click "Generate Tattoo Design"
+5. Wait for the AI to create your custom tattoo design
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies Used
 
-## Learn More
+- Next.js
+- React
+- Tailwind CSS
+- Freepik AI API
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This application is deployed on Vercel and can be accessed at [your-vercel-url].
