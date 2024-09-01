@@ -56,18 +56,21 @@ export default function Home() {
           onChange={(e) => setPrompt(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded mb-2"
           placeholder="Describe your tattoo (e.g., 'a rose with a butterfly')"
+          maxLength={100}
         />
+        
+        <p className="text-sm text-gray-500 mb-2">For best results, keep descriptions short and simple (max 100 characters).</p>
         
         <select
           value={style}
           onChange={(e) => setStyle(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded mb-2"
         >
-          <option value="realistic">Realistic</option>
-          <option value="minimalist">Minimalist</option>
-          <option value="traditional">Traditional</option>
-          <option value="watercolor">Watercolor</option>
-          <option value="geometric">Geometric</option>
+          <option value="photorealistic">Photorealistic</option>
+          <option value="black and gray">Black and Gray</option>
+          <option value="old school">Old School</option>
+          <option value="neo-traditional">Neo-Traditional</option>
+          <option value="tribal">Tribal</option>
         </select>
         
         <select
@@ -75,11 +78,12 @@ export default function Home() {
           onChange={(e) => setPlacement(e.target.value)}
           className="w-full p-2 border border-gray-300 rounded mb-2"
         >
-          <option value="arm">Arm</option>
-          <option value="leg">Leg</option>
-          <option value="back">Back</option>
+          <option value="inner forearm">Inner Forearm</option>
+          <option value="outer bicep">Outer Bicep</option>
+          <option value="upper back">Upper Back</option>
           <option value="chest">Chest</option>
-          <option value="wrist">Wrist</option>
+          <option value="calf">Calf</option>
+          <option value="thigh">Thigh</option>
         </select>
         
         <button
