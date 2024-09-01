@@ -4,7 +4,6 @@ import { useState } from "react";
 export default function Home() {
   const [design, setDesign] = useState("");
   const [style, setStyle] = useState("realistic");
-  const [placement, setPlacement] = useState("arm");
   const [generatedImage, setGeneratedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,7 +12,7 @@ export default function Home() {
     setIsLoading(true);
     setError(null);
     try {
-      const prompt = `Realistic tattoo design of ${design} in ${style} style on human ${placement}, closeup view, highly detailed, skin texture, ink`;
+      const prompt = `Realistic tattoo design of ${design} in ${style} style, closeup view, highly detailed, skin texture, ink`;
       const response = await fetch('/api/generate-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -100,18 +99,6 @@ export default function Home() {
           <option value="continuous-line">Continuous Line</option>
           <option value="illustrative">Illustrative</option>
           <option value="abstract">Abstract</option>
-        </select>
-        
-        <select
-          value={placement}
-          onChange={(e) => setPlacement(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded mb-2"
-        >
-          <option value="arm">Arm</option>
-          <option value="back">Back</option>
-          <option value="chest">Chest</option>
-          <option value="leg">Leg</option>
-          <option value="wrist">Wrist</option>
         </select>
         
         <button
