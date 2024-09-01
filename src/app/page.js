@@ -20,6 +20,7 @@ export default function Home() {
         body: JSON.stringify({ 
           prompt,
           negative_prompt: "cartoon, anime, illustration, digital art, canvas, paper",
+          image: { size: "600x900" }, // Pinterest optimized size
         }),
       });
       const data = await response.json();
@@ -35,47 +36,76 @@ export default function Home() {
     }
   };
 
+  const downloadImage = () => {
+    const link = document.createElement('a');
+    link.href = generatedImage;
+    link.download = 'tattoo-design.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <main className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Tattoo Design Generator</h1>
-      <input
-        type="text"
-        value={design}
-        onChange={(e) => setDesign(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded mb-2"
-        placeholder="Describe your tattoo design (e.g., rose with butterfly)"
-      />
-      <select
-        value={style}
-        onChange={(e) => setStyle(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded mb-2"
-      >
-        <option value="realistic">Realistic</option>
-        <option value="traditional">Traditional</option>
-        <option value="minimalist">Minimalist</option>
-        <option value="tribal">Tribal</option>
-        <option value="watercolor">Watercolor</option>
-      </select>
-      <select
-        value={placement}
-        onChange={(e) => setPlacement(e.target.value)}
-        className="w-full p-2 border border-gray-300 rounded mb-2"
-      >
-        <option value="arm">Arm</option>
-        <option value="back">Back</option>
-        <option value="chest">Chest</option>
-        <option value="leg">Leg</option>
-        <option value="wrist">Wrist</option>
-      </select>
-      <button
-        onClick={generateImage}
-        disabled={isLoading || !design}
-        className="w-full bg-blue-500 text-white p-2 rounded"
-      >
-        {isLoading ? 'Generating...' : 'Generate Tattoo Design'}
-      </button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-      {generatedImage && <img src={generatedImage} alt="Generated tattoo design" className="mt-4 max-w-full h-auto" />}
+    <main className="flex flex-col items-center justify-center min-h-screen p-4">
+      <h1 className="text-4xl font-bold mb-8 text-center">Tattoo Design Generator</h1>
+      
+      <div className="w-full max-w-md">
+        <input
+          type="text"
+          value={design}
+          onChange={(e) => setDesign(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded mb-2"
+          placeholder="Describe your tattoo design (e.g., rose with butterfly)"
+        />
+        
+        <select
+          value={style}
+          onChange={(e) => setStyle(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded mb-2"
+        >
+          <option value="realistic">Realistic</option>
+          <option value="traditional">Traditional</option>
+          <option value="minimalist">Minimalist</option>
+          <option value="tribal">Tribal</option>
+          <option value="watercolor">Watercolor</option>
+        </select>
+        
+        <select
+          value={placement}
+          onChange={(e) => setPlacement(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded mb-2"
+        >
+          <option value="arm">Arm</option>
+          <option value="back">Back</option>
+          <option value="chest">Chest</option>
+          <option value="leg">Leg</option>
+          <option value="wrist">Wrist</option>
+        </select>
+        
+        <button
+          onClick={generateImage}
+          disabled={isLoading || !design}
+          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 disabled:bg-gray-300"
+        >
+          {isLoading ? 'Generating...' : 'Generate Tattoo Design'}
+        </button>
+        
+        {error && (
+          <p className="mt-2 text-red-500">{error}</p>
+        )}
+        
+        {generatedImage && (
+          <div className="mt-4 flex flex-col items-center">
+            <img src={generatedImage} alt="Generated tattoo design" className="max-w-full h-auto" />
+            <button
+              onClick={downloadImage}
+              className="mt-2 bg-green-500 text-white p-2 rounded hover:bg-green-600"
+            >
+              Download Image
+            </button>
+          </div>
+        )}
+      </div>
     </main>
   );
 }

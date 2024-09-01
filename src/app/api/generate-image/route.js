@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export async function POST(request) {
   try {
-    const { prompt, negative_prompt } = await request.json();
+    const { prompt, negative_prompt, image } = await request.json();
     console.log('Received prompt:', prompt);
 
     const response = await axios.post(
@@ -11,7 +11,7 @@ export async function POST(request) {
       {
         prompt,
         negative_prompt,
-        image: { size: "square" },
+        image,
         num_inference_steps: 50,
         guidance_scale: 7.5,
       },
