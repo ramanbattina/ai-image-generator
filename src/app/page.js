@@ -68,6 +68,38 @@ export default function Home() {
           <option value="minimalist">Minimalist</option>
           <option value="tribal">Tribal</option>
           <option value="watercolor">Watercolor</option>
+          <option value="neo-traditional">Neo Traditional</option>
+          <option value="new-school">New School</option>
+          <option value="black-and-grey">Black and Grey</option>
+          <option value="japanese">Japanese</option>
+          <option value="script">Script / Lettering</option>
+          <option value="geometric">Geometric</option>
+          <option value="embroidery">Embroidery</option>
+          <option value="portrait">Portrait</option>
+          <option value="cosmetic">Cosmetic</option>
+          <option value="prison">Prison</option>
+          <option value="mandala">Mandala</option>
+          <option value="graffiti">Graffiti</option>
+          <option value="surrealism">Surrealism</option>
+          <option value="sketch">Sketch</option>
+          <option value="blackwork">Blackwork</option>
+          <option value="trash-polka">Trash Polka</option>
+          <option value="dotwork">Dotwork</option>
+          <option value="negative-space">Negative Space</option>
+          <option value="fine-art">Fine Art</option>
+          <option value="fine-line">Fine Line</option>
+          <option value="micro">Micro</option>
+          <option value="3d">3-D</option>
+          <option value="cartoon">Cartoon/Anime</option>
+          <option value="pet">Pet and Animal</option>
+          <option value="chicano">Chicano</option>
+          <option value="biomechanical">Biomechanical</option>
+          <option value="hyperrealism">Hyperrealism</option>
+          <option value="religious">Religious</option>
+          <option value="horror">Horror</option>
+          <option value="continuous-line">Continuous Line</option>
+          <option value="illustrative">Illustrative</option>
+          <option value="abstract">Abstract</option>
         </select>
         
         <select
